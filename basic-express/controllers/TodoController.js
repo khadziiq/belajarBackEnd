@@ -30,6 +30,13 @@ class TodoController{
         })
         .catch(err=> res.send(err))
     }
+    static search(req, res){
+        Todo.search(req.query)
+        .then(result =>{
+            res.send(result)
+        })
+        .catch(err => res.send(err))
+    }
 }
 
 module.exports = TodoController

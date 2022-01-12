@@ -61,6 +61,41 @@ class Todo{
             })
         })
     }
+    static search(reqQuery){
+        return new Promise((resolve, reject)=>{
+            this.getTodos()
+            .then(result=>{
+                let todos = result
+                let searchQuery
+                for (let key in reqQuery) {
+                    searchQuery = key
+                    
+                }
+                switch (searchQuery) {
+                    case 'task':
+                        todos.forEach(todo=>{
+                            if (todo.task === reqQuery[searchQuery]) {
+                                resolve(todo)
+                            }
+                        })
+                        break;
+                
+                    case 'status':
+                        let tempArray = []
+                        todos.forEach(todo=>{
+                            if (todo.status === Boolean(reqQuery[searchQuery])) {
+                                tempArray.push(todo)
+                            }
+                        })
+                        resolve(tempArray)
+                }
+            })
+            .catch(err=>{
+                
+            })
+            
+        })
+    }
     static save(todos){
         fs.writeFileSync('./database/data.json', JSON.stringify(todos, null, 3))
     }
