@@ -3,9 +3,10 @@ const route = Router()
 
 
 route.get('/', (req, res)=>{
-    res.json({
-        message: "Home Page"
-    })
+    // res.json({
+    //     message: "Home Page"
+    // })
+    res.render('index.ejs')
 })
 const todoRoutes = require('./todo')
 const userRoutes = require('./user')

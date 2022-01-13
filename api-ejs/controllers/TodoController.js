@@ -8,11 +8,15 @@ class TodoController{
                 ]
             })
             .then(todos=>{
-                res.json(todos)
+                // res.json(todos)
+                res.render('todo.ejs', {todos})
             })
             .catch(err =>{
                 res.json(err)
             })
+    }
+    static addTodoPage(req, res){
+        res.render('addTodo.ejs')
     }
     static addTodo(req, res){
         let {task, status} = req.body
@@ -21,8 +25,9 @@ class TodoController{
             task,
             status
         })
-        .then(todos=>{
-            res.json(todos)
+        .then(result=>{
+            // res.json(todos)
+            res.redirect('/todos')
         })
         .catch(err =>{
             res.json(err)
@@ -54,9 +59,7 @@ class TodoController{
          })
          .then(result=>{
             if (result === 1) {
-                res.json({
-                    message:`id ${id} has been successfully deleted`
-                }) 
+                res.redirect('/todos')
             } else{
                 res.json({
                     message:`The id ${id} not exist`

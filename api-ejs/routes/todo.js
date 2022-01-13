@@ -3,6 +3,7 @@ const TodoControllers = require('../controllers/TodoController')
 
 
 todoRoute.get('/', TodoControllers.readTodos)
+todoRoute.get('/add', TodoControllers.addTodoPage)
 todoRoute.post('/add', TodoControllers.addTodo)
 todoRoute.get('/detail/:id', TodoControllers.findById)
 todoRoute.get('/delete/:id', TodoControllers.deleteTodo)
